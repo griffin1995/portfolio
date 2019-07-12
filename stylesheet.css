@@ -1,18 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Inconsolata&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Inconsolata&display=swap");
 
 :root {
     --const-colors: #409544;
 }
 
 body {
-    background-color: #EAE1D7;
-    font-family: 'Inconsolata', monospace;
-    color: #404040
+    background-color: #eae1d7;
+    font-family: "Inconsolata", monospace;
+    color: #404040;
 }
 
 ul {
-
-
     list-style-position: inside;
 }
 
