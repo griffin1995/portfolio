@@ -24,3 +24,10 @@ ul {
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
 }
+
+.center {
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 50%;
+}
