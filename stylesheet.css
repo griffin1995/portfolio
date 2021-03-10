@@ -28,6 +28,7 @@ ul {
     height: 300px;
     position: relative;
     padding-top: 10px;
+    margin-bottom: 20px;
 }
 
 #aboutMe img {
@@ -48,6 +49,7 @@ ul {
     height: 300px;
     position: relative;
     padding-top: 10px;
+    margin-bottom: 20px;
 }
 
 #skills img {
@@ -58,7 +60,7 @@ ul {
 }
 
 #skills p {
-    padding: 40px;
+    padding: 20px;
 }
 
 #projects {
@@ -66,7 +68,6 @@ ul {
     width: 100%;
     height: 300px;
     position: relative;
-    padding-top: 10px;
 
 }
 
@@ -75,12 +76,10 @@ ul {
     float: left;
     height: 80%;
     margin: 20px;
-    width: 27%;
+    width: 20%;
 }
 
-#projects p {
-    padding: 40px;
-}
+
 
 #footer {
     background-color: rgba(0, 0, 0, 0.35);
