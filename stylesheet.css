@@ -4,9 +4,10 @@
   --const-colors: #409544;
 }
 
+
 body {
   background: linear-gradient(to right top, #65dfc9, #6cdbeb);
-
+padding-top: 50px;
   font-family: "Inconsolata", monospace;
   color: #404040;
 }
