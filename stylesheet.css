@@ -4,10 +4,9 @@
   --const-colors: #409544;
 }
 
-
 body {
   background: linear-gradient(to right top, #65dfc9, #6cdbeb);
-padding-top: 50px;
+  padding-top: 50px;
   font-family: "Inconsolata", monospace;
   color: #404040;
 }
@@ -45,6 +44,7 @@ ul {
   margin-bottom: 20px;
   align-items: center;
   border-radius: 1.5rem;
+  padding: 0 20px;
 }
 
 #aboutMe img {
@@ -55,12 +55,22 @@ ul {
   border-radius: 100%;
 }
 
+
 #aboutMe p {
   padding: 40px;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* not working, why? */
+#aboutMe p::after {
+  content: '';
+  height: 20px;
+  width: 50px;
+  color: black;
+  display: block;
 }
 
 #skills {
@@ -81,16 +91,16 @@ ul {
 }
 
 #skills img {
-  position: relative;
-  float: right;
   height: 80%;
   margin: 20px;
+  transform: scale(0.5);
 }
-
+#skills img:hover {
+  transform:scale(1);
+}
 #skills p {
+  display: flex;
   padding: 20px;
-  align-items: center;
-  justify-content: center;
 }
 
 #projects {
