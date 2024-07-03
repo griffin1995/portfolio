@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!-- Head section: contains meta-information, title, and external resources -->
   <head>
+    <!-- Character encoding set to UTF-8 -->
     <meta charset="UTF-8" />
+    <!-- Ensures proper rendering and touch zooming on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title of the document -->
     <title>Document</title>
+    <!-- Load static files using Django's template tag -->
     {% load static %}
+    <!-- jQuery library from Google's CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Link to Google Fonts for the Roboto font family -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
     />
+    <!-- Link to the CSS file for the application, served as a static file -->
     <link rel="stylesheet" type="text/css" href="{% static "css/index.css" %}"
     />
-</head>
-<body>
-  <div id="main">
-    <div id="app"></div>
-  </div>
+  </head>
 
-  <script src="{% static "frontend/main.js" %}"></script>
-</body>
+  <!-- Body section: contains the visible content of the page -->
+  <body>
+    <!-- Main container -->
+    <div id="main">
+      <!-- Application root element -->
+      <div id="app"></div>
+    </div>
+
+    <!-- Link to the main JavaScript file for the application, served as a static file -->
+    <!-- This script includes the bundled JavaScript file containing all the React code, allowing React to manage the content within the 'app' div -->
+    <script src="{% static "frontend/main.js" %}"></script>
+  </body>
 </html>
