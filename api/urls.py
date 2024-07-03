@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import main
+from .views import RoomView
 
-# Define URL patterns for the Django application
+# URL configuration for the Django application
+# This list routes URLs to the appropriate views
 urlpatterns = [
-    # Map the "home" URL to the 'main' view function
-    path("home", main),
-    # Map the root URL to the 'main' view function
-    path("", main),
+    # Route the "home" URL to the RoomView class-based view
+    # When the "home" URL is accessed, the as_view() method of RoomView will be called
+    path("room", RoomView.as_view()),
 ]

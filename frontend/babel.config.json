@@ -1,0 +1,19 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        // Specify the target environment for Babel to transpile the code to
+        "targets": {
+          "node": "10"
+        }
+      }
+    ],
+    // Use @babel/preset-react to transpile JSX and other React-specific syntax
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    // Use @babel/plugin-proposal-class-properties to enable support for class properties syntax
+    "@babel/plugin-proposal-class-properties"
+  ]
+}
