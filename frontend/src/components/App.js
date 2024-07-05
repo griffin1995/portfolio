@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import Home from "./Home";
+import HubJoin from "./HubJoin";
+import HubCreate from "./HubCreate";
 
 // App component that renders a simple heading
 export default class App extends Component {
@@ -10,7 +13,7 @@ export default class App extends Component {
 
   // Render method to display the component's content
   render() {
-    return <h1>Testing</h1>;
+    return <Home />;
   }
 }
 

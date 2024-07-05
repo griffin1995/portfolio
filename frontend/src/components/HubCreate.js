@@ -1,24 +1,13 @@
 import React, { Component } from "react";
-import HubJoin from "./HubJoin";
-import HubCreate from "./HubCreate";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Importing necessary components from react-router-dom
 
+// HubCreate component definition
 export default class HubCreate extends Component {
   constructor(props) {
-    super(props);
+    super(props); // Call the superclass constructor with props
   }
 
   render() {
-    return (
-      <Router>
-        <Routes>
-          <Route path="/" element={<p>This is the HubCreate page</p>} />
-
-          <Route path="/join" element={<HubJoin />} />
-
-          <Route path="/create" element={<HubCreate />} />
-        </Routes>
-      </Router>
-    );
+    return <p>HubCreate</p>; // Render a paragraph with the text "HubCreate"
   }
 }
