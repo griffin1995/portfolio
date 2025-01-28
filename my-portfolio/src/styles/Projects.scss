@@ -25,39 +25,43 @@
   border-radius: 0 !important;
 }
 
-@import "./variables.scss";
-@import "./mixins.scss";
-
-.projects {
-  text-align: center;
-}
-
-.project-card {
-  background: none !important;
-  border: none;
-  box-shadow: none;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.project-card .card-body {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.no-rounded {
-  border-radius: 0 !important;
-}
-
-/* Apply PP Editorial Old to Work Heading */
+/* Apply PP Editorial Old Ultra Light to Work Heading */
 .work-heading {
-  font-size: 3rem; /* Adjust size as needed */
-  font-family: 'Nikkei', serif;
-  font-weight: 200;
+  font-size: 3rem;
+  font-family: 'PP Editorial Old', serif;
+  font-weight: 200; /* Ultra Light */
   color: white;
   text-transform: uppercase;
   margin-bottom: 20px;
+}
+
+/* Apply Ultra Light Font to Project Titles & Text */
+.project-card .card-title,
+.project-card .card-text {
+  font-family: 'PP Editorial Old', serif;
+  font-weight: 200; /* Ultra Light */
+  color: white;
+}
+
+/* Grayscale Effect for Project Images */
+.project-card img {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease-in-out;
+}
+
+/* Optional: Remove Grayscale on Hover */
+.project-card img:hover {
+  filter: grayscale(0%);
+}
+
+/* Make Buttons Light Grey */
+.project-card .btn {
+  background-color: #b3b3b3 !important; /* Light Grey */
+  color: black !important;
+  border: none !important;
+}
+
+.project-card .btn:hover {
+  background-color: #d1d1d1 !important; /* Slightly lighter on hover */
+  color: black !important;
 }

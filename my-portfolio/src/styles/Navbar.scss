@@ -5,9 +5,9 @@
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 15px 0;
+  padding: 15px 0; /* Keep navbar height unchanged */
   background: transparent;
-  transition: background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+  transition: backdrop-filter 0.3s ease-in-out;
   backdrop-filter: blur(0px);
   color: white;
 
@@ -16,9 +16,14 @@
     justify-content: space-between;
   }
 
-  .navbar-brand,
-  .nav-link,
-  .btn {
+  .navbar-brand {
+    font-size: 1.5rem; /* Keep brand size unchanged */
+    font-weight: bold;
+    color: white !important;
+  }
+
+  .nav-link {
+    font-size: 1.4rem; /* Increase font size without affecting height */
     color: white !important;
   }
 
@@ -29,20 +34,25 @@
 
   .btn {
     @include button-style($primary-color);
+    font-size: 1rem; /* Keep button text at a readable size */
   }
 }
 
+/* Keep blur effect on scroll WITHOUT increasing navbar size */
 .scrolled {
-  background: rgba(0, 0, 0, 0.7);
+  background: transparent !important;
   backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
 }
 
+/* Ensure logo remains small */
 .navbar-logo {
-    width: 75px;
-    height: auto;
-  }
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 200px; /* Adjust based on navbar height */
-  }
-  
+  width: 75px;
+  height: auto;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 200px;
+}

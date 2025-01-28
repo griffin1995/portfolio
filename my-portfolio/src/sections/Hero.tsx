@@ -15,7 +15,7 @@ function Hero() {
             />
             <p className="hero-text top-left">Data Science</p>
             <p className="hero-text top-right">Machine Learning</p>
-            <p className="hero-text bottom-right">Software Developer</p>
+            <p className="hero-text bottom-right">Software Development</p>
           </Col>
         </Row>
       </Container>

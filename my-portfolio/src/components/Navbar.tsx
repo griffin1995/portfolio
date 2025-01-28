@@ -33,7 +33,7 @@ function Navigation() {
           <img src={griffinLogo} alt="Griffin Logo" className="navbar-logo" />
           <span
             className="navbar-text text-white"
-            style={{ fontSize: "0.7rem", textDecoration: "underline" }}
+            style={{ fontSize: "0.8rem", textDecoration: "underline" }}
           >
             Griffin
           </span>
