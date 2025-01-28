@@ -1,0 +1,51 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $background-dark;
+  position: relative;
+}
+
+.profile-image {
+  width: 20vw; /* 20% of the viewport width */
+  height: auto;
+  max-width: 150px;
+  max-height: 150px;
+  display: block;
+  margin: 0 auto;
+  object-fit: cover;
+  border-radius: 0; /* Ensures it's a square */
+  filter: grayscale(100%); /* Converts image to grayscale */
+}
+
+.hero-text {
+  position: absolute;
+  font-size: 1rem;
+  color: $text-dark;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.top-left {
+  top: 10%;
+  left: 10%;
+}
+
+.top-right {
+  top: 10%;
+  right: 10%;
+}
+
+.bottom-left {
+  bottom: 10%;
+  left: 10%;
+}
+
+.bottom-right {
+  bottom: 10%;
+  right: 10%;
+}

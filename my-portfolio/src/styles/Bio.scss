@@ -1,0 +1,52 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+.contact {
+  padding: $section-padding;
+  text-align: center;
+  background-color: $background-light;
+  color: $text-light;
+
+  .container {
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    label {
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+
+    input,
+    textarea {
+      padding: 10px;
+      border: 1px solid $secondary-color;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    button {
+      @include button-style($primary-color);
+      cursor: pointer;
+    }
+  }
+}

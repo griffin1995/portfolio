@@ -1,0 +1,18 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+.footer {
+  background-color: $background-dark;
+  color: $text-dark;
+  text-align: center;
+  padding: 20px 0;
+
+  .container {
+    max-width: $max-width;
+    margin: 0 auto;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}

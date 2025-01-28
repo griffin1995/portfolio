@@ -1,0 +1,48 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 15px 0;
+  background: transparent;
+  transition: background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+  backdrop-filter: blur(0px);
+  color: white;
+
+  .container {
+    @include flex-center;
+    justify-content: space-between;
+  }
+
+  .navbar-brand,
+  .nav-link,
+  .btn {
+    color: white !important;
+  }
+
+  .nav-link:hover,
+  .navbar-brand:hover {
+    color: $primary-color !important;
+  }
+
+  .btn {
+    @include button-style($primary-color);
+  }
+}
+
+.scrolled {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+}
+
+.navbar-logo {
+    width: 75px;
+    height: auto;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 200px; /* Adjust based on navbar height */
+  }
+  

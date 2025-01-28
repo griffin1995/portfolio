@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'PP Neue Bit';
+    src: url('https://cdn.prod.website-files.com/66197ceaf1c361d89a9f8779/6772dd37e95d1ca2bd2c488f_PPNeueBit-Bold.woff2') format('woff2'),
+         url('https://cdn.prod.website-files.com/66197ceaf1c361d89a9f8779/6772dd3764ad1e5feb5a006e_PPNeueBit-Bold.woff') format('woff'),
+         url('https://cdn.prod.website-files.com/66197ceaf1c361d89a9f8779/6772dd378f931c08aba9d2be_PPNeueBit-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'PP Editorial Old';
+    src: url('https://cdn.prod.website-files.com/66197ceaf1c361d89a9f8779/6772dd8545d76e5bc6d4ec9f_PPEditorialOld-Ultralight.woff2') format('woff2'),
+         url('https://cdn.prod.website-files.com/66197ceaf1c361d89a9f8779/6772dd85f1625bc0d682981c_PPEditorialOld-Ultralight.eot') format('embedded-opentype'),
+         url('https://cdn.prod.website-files.com/66197ceaf1c361d89a9f8779/6772dd8540850ea3236d13bc_PPEditorialOld-Ultralight.woff') format('woff'),
+         url('https://cdn.prod.website-files.com/66197ceaf1c361d89a9f8779/6772dd857595d6cbfe115098_PPEditorialOld-Ultralight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Nikkei';
+    src: url('https://your-font-url.com/Nikkei-Regular.woff2') format('woff2'),
+         url('https://your-font-url.com/Nikkei-Regular.woff') format('woff'),
+         url('https://your-font-url.com/Nikkei-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Nikkei';
+    src: url('https://your-font-url.com/Nikkei-Bold.woff2') format('woff2'),
+         url('https://your-font-url.com/Nikkei-Bold.woff') format('woff'),
+         url('https://your-font-url.com/Nikkei-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  

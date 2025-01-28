@@ -1,0 +1,33 @@
+/* Reusable Mixins */
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  @mixin button-style($bg-color) {
+    background-color: $bg-color;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+  
+    &:hover {
+      background-color: darken($bg-color, 10%);
+    }
+  }
+  
+  @mixin section-padding {
+    padding: 80px 0;
+  }
+  
+  @mixin responsive($breakpoint) {
+    @if $breakpoint == tablet {
+      @media (max-width: 768px) { @content; }
+    } @else if $breakpoint == mobile {
+      @media (max-width: 480px) { @content; }
+    }
+  }

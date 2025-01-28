@@ -1,0 +1,33 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+.about {
+  padding: $section-padding;
+  text-align: center;
+  background-color: transparent;
+  color: $text-dark;
+
+  .container {
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 20px;
+  }
+}
+
+.about-heading {
+  font-size: 16rem;
+  font-family: 'PP Editorial Old', serif;
+  color: white;
+  font-weight: 200;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+
+.about-text {
+  font-size: .9rem;
+  color: white;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
