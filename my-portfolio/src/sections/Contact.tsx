@@ -10,13 +10,13 @@ function Contact() {
         <Row className="justify-content-center">
           <Col md={8} lg={6}>
             <div className="social-icons">
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/griffin1995" target="_blank" rel="noopener noreferrer">
                 <FaGithub className="social-icon" />
               </a>
-              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/jackgriffindev/" target="_blank" rel="noopener noreferrer">
                 <FaLinkedin className="social-icon" />
               </a>
-              <a href="mailto:your.email@example.com">
+              <a href="mailto:jtgriffin95@gmail.com">
                 <FaEnvelope className="social-icon" />
               </a>
             </div>
