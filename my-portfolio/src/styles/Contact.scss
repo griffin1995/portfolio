@@ -1,0 +1,21 @@
+.contact {
+    padding: 50px 0;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  .social-icon {
+    font-size: 2rem;  // Adjust size
+    color: white;     // Change color if needed
+    transition: transform 0.2s ease-in-out;
+  
+    &:hover {
+      transform: scale(1.2);
+      color: #f0f0f0; // Light grey on hover
+    }
+  }
+  

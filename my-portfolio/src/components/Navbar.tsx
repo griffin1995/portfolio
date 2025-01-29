@@ -16,31 +16,23 @@ function Navigation() {
   }, []);
 
   return (
-    <Navbar
-      expand="lg"
-      fixed="top"
-      className={`navbar ${scrolled ? "scrolled" : ""}`}
-    >
-      <Container className="d-flex align-items-center justify-content-center">
+    <Navbar expand="lg" fixed="top" className={`navbar ${scrolled ? "scrolled" : ""}`}>
+      <Container className="d-flex align-items-center justify-content-between">
+        {/* Left Nav Links */}
         <Nav className="d-flex align-items-center gap-4">
-          <Nav.Link href="#home">Home</Nav.Link>          <Nav.Link href="#about-text">About</Nav.Link>
-
+          <Nav.Link href="#home">Home</Nav.Link>
+          <Nav.Link href="#about-text">About</Nav.Link>
         </Nav>
-        <Navbar.Brand
-          href="#home"
-          className="d-flex flex-column align-items-center text-center mx-5"
-        >
-          <img src={griffinLogo} alt="Griffin Logo" className="navbar-logo" />
-          <span
-            className="navbar-text text-white"
-            style={{ fontSize: "0.8rem", textDecoration: "underline" }}
-          >
-            Griffin
-          </span>
-        </Navbar.Brand>
-        <Nav className="d-flex align-items-center gap-4">
-        <Nav.Link href="#projects">Projects</Nav.Link>
 
+        {/* Center Logo with Text */}
+        <Navbar.Brand href="#home" className="d-flex flex-column align-items-center text-center mx-5">
+          <img src={griffinLogo} alt="Griffin Logo" className="navbar-logo" />
+          <span className="navbar-text">Griffin</span>
+        </Navbar.Brand>
+
+        {/* Right Nav Links */}
+        <Nav className="d-flex align-items-center gap-4">
+          <Nav.Link href="#projects">Projects</Nav.Link>
           <Nav.Link href="#bio">Bio</Nav.Link>
         </Nav>
       </Container>

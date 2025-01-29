@@ -7,6 +7,7 @@ import About from "./sections/About";
 import Projects from "./sections/Projects";
 import Bio from "./sections/Bio";
 import Footer from "./sections/Footer";
+import Contact from "./sections/Contact.tsx"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <About />
         <Projects />
         <Bio />
+        <Contact/>
       </main>
       <Footer />
     </div>
