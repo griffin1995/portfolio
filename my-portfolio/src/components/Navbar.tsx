@@ -27,7 +27,7 @@ function Navigation() {
         {/* Center Logo with Text */}
         <Navbar.Brand href="#home" className="d-flex flex-column align-items-center text-center mx-5">
           <img src={griffinLogo} alt="Griffin Logo" className="navbar-logo" />
-          <span className="navbar-text">Griffin</span>
+          <span className="navbar-text">Jack Griffin</span>
         </Navbar.Brand>
 
         {/* Right Nav Links */}

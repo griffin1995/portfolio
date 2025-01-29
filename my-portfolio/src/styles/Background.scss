@@ -1,0 +1,13 @@
+.noise-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; // Prevent interference with clicks
+    background-image: url("https://www.transparenttextures.com/patterns/noise.png");
+    opacity: 0.05; // Adjust for more/less noise visibility
+    mix-blend-mode: overlay; // Blends well with dark themes
+    z-index: -1;
+  }
+  

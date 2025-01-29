@@ -1,7 +1,8 @@
-import "../styles/Background.scss";
+import React from "react";
+import "./../styles/Background.scss"; // Ensure this file exists
 
-function Background() {
-  return <div className="animated-background"></div>;
-}
+const Background: React.FC = () => {
+  return <div className="noise-background"></div>;
+};
 
 export default Background;

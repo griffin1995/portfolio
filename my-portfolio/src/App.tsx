@@ -11,7 +11,7 @@ import Contact from "./sections/Contact.tsx"
 
 function App() {
   return (
-    <div className="c-body">
+    <div>
       <Navbar />
       <main>
         <Hero />

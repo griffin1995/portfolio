@@ -1,5 +1,6 @@
-@import "./variables.scss";
-@import "./mixins.scss";
+@use "./variables" as *;
+@use "./mixins" as *;
+
 
 .navbar {
   position: fixed;
