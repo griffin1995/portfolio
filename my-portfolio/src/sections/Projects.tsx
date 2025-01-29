@@ -2,6 +2,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Projects.scss";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
+// Import images properly
+import financeImg from "../assets/placeholder-finance.jpg";
+import cryptoImg from "../assets/placeholder-crypto.jpg";
+
 function Projects() {
   return (
     <section id="projects" className="projects py-5">
@@ -12,7 +16,7 @@ function Projects() {
           {/* Project 1 */}
           <Col md={6} lg={5} className="d-flex">
             <Card className="project-card border-0 no-rounded flex-fill">
-              <Card.Img variant="top" src="/src/assets/placeholder-finance.jpg" alt="Financial Index Tracking" className="card-img-top no-rounded" />
+              <Card.Img variant="top" src={financeImg} alt="Financial Index Tracking" className="card-img-top no-rounded" />
               <Card.Body className="d-flex flex-column">
                 <Card.Title className="fw-bold">Optimization Techniques for Financial Index Tracking</Card.Title>
                 <Card.Text>
@@ -30,7 +34,7 @@ function Projects() {
           {/* Project 2 */}
           <Col md={6} lg={5} className="d-flex">
             <Card className="project-card border-0 no-rounded flex-fill">
-              <Card.Img variant="top" src="/src/assets/placeholder-crypto.jpg" alt="Cryptocurrency Platform" className="card-img-top no-rounded" />
+              <Card.Img variant="top" src={cryptoImg} alt="Cryptocurrency Platform" className="card-img-top no-rounded" />
               <Card.Body className="d-flex flex-column">
                 <Card.Title className="fw-bold">Advanced Cryptocurrency Trading Platform</Card.Title>
                 <Card.Text>

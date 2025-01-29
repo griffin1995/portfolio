@@ -2,6 +2,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Hero.scss";
 import { Container, Row, Col, Image } from "react-bootstrap";
 
+// Import image correctly
+import profileImg from "../assets/placeholder-profile.jpeg";
+
 function Hero() {
   return (
     <section id="home" className="hero d-flex align-items-center justify-content-center">
@@ -9,7 +12,7 @@ function Hero() {
         <Row className="justify-content-center">
           <Col md={4} className="position-relative">
             <Image
-              src="/src/assets/placeholder-profile.jpeg"
+              src={profileImg} // Use imported image
               alt="Profile"
               className="profile-image"
             />
