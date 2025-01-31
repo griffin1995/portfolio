@@ -10,7 +10,7 @@ function Hero() {
     <section id="home" className="hero d-flex align-items-center justify-content-center">
       <Container className="text-center position-relative">
         <Row className="justify-content-center">
-          <Col md={4} className="position-relative">
+          <Col md={5} className="position-relative">
             <Image
               src={profileImg} // Use imported image
               alt="Profile"

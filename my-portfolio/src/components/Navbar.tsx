@@ -5,20 +5,26 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import griffinLogo from "../assets/griffin.png";
 
 function Navigation() {
+  // State to track whether the user has scrolled past a certain point
   const [scrolled, setScrolled] = useState<boolean>(false);
 
   useEffect(() => {
+    // Function to check the scroll position and update state accordingly
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
+
+    // Attach the scroll event listener
     window.addEventListener("scroll", handleScroll);
+    
+    // Cleanup function to remove the event listener on component unmount
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <Navbar expand="lg" fixed="top" className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <Container className="d-flex align-items-center justify-content-between">
-        {/* Left Nav Links */}
+        {/* Left Navigation Links */}
         <Nav className="d-flex align-items-center gap-4">
           <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#about-text">About</Nav.Link>
@@ -30,7 +36,7 @@ function Navigation() {
           <span className="navbar-text">Jack Griffin</span>
         </Navbar.Brand>
 
-        {/* Right Nav Links */}
+        {/* Right Navigation Links */}
         <Nav className="d-flex align-items-center gap-4">
           <Nav.Link href="#projects">Projects</Nav.Link>
           <Nav.Link href="#bio">Bio</Nav.Link>

@@ -1,18 +1,50 @@
+// Projects.scss
+
 @use "./variables" as *;
 @use "./mixins" as *;
 
-
 .projects {
   text-align: center;
+  padding: 80px 0;
 }
 
+/* Work Heading - Rotated & Moves Up While Scrolling */
+.work-heading {
+  position: fixed;
+  right: 20px;
+  transform: rotate(90deg);
+  transform-origin: center;
+  white-space: nowrap;
+  font-size: 3rem;
+  font-family: 'PP Editorial Old', serif;
+  font-weight: 200; /* Ultra Light */
+  color: white;
+  text-transform: uppercase;
+  z-index: 1000;
+  transition: top 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.small-text {
+  font-size: 0.85rem;
+  opacity: 0.95;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Project Card Styling */
 .project-card {
-  background: none !important;
-  border: none;
-  box-shadow: none;
+  background: rgba(20, 20, 20, 0.85); /* Dark semi-transparent background */
+  border-radius: 0px; /* Subtle rounded corners */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
   height: 100%;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 25px rgba(255, 255, 255, 0.15);
+  }
 }
 
 .project-card .card-body {
@@ -20,49 +52,45 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 20px;
 }
 
 .no-rounded {
   border-radius: 0 !important;
 }
 
-/* Apply PP Editorial Old Ultra Light to Work Heading */
-.work-heading {
-  font-size: 3rem;
-  font-family: 'PP Editorial Old', serif;
-  font-weight: 200; /* Ultra Light */
-  color: white;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-
-/* Apply Ultra Light Font to Project Titles & Text */
+/* Project Titles & Text */
 .project-card .card-title,
 .project-card .card-text {
-  font-family: 'PP Editorial Old', serif;
-  font-weight: 200; /* Ultra Light */
+  font-family: 'Nikkei', serif;
+  font-weight: 200;
   color: white;
 }
 
 /* Grayscale Effect for Project Images */
 .project-card img {
   filter: grayscale(100%);
-  transition: filter 0.3s ease-in-out;
+  transition: filter 0.4s ease-in-out, transform 0.3s ease-in-out;
+  border-radius: 0 0px 0 0; /* Rounded corners for top */
 }
 
-/* Optional: Remove Grayscale on Hover */
+/* Remove Grayscale & Slight Zoom on Hover */
 .project-card img:hover {
   filter: grayscale(0%);
+  transform: scale(1.05);
 }
 
-/* Make Buttons Light Grey */
+/* Button Styling */
 .project-card .btn {
-  background-color: #b3b3b3 !important; /* Light Grey */
-  color: black !important;
-  border: none !important;
+  background: linear-gradient(135deg, #b3b3b3, #d1d1d1);
+  color: black;
+  font-weight: bold;
+  border: none;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+  border-radius: 0 !important;
 }
 
 .project-card .btn:hover {
-  background-color: #d1d1d1 !important; /* Slightly lighter on hover */
-  color: black !important;
+  background: linear-gradient(135deg, #d1d1d1, #ffffff);
+  transform: scale(1.05);
 }
