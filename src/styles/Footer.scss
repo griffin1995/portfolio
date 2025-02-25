@@ -1,14 +1,13 @@
 @use "./variables" as *;
 @use "./mixins" as *;
 
-
 .footer {
-  background-color: $background-dark;
   color: $text-dark;
   text-align: center;
   padding: 20px 0;
 
-  .container {
+  // Scope container styles only to direct children within the footer.
+  > .container {
     max-width: $max-width;
     margin: 0 auto;
   }

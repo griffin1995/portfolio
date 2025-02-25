@@ -1,52 +1,46 @@
 @use "./variables" as *;
 @use "./mixins" as *;
 
-
 .hero {
-  height: 100vh;
+  height: 100vh; // Full viewport height
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: $background-dark;
-  position: relative;
-}
+  align-items: center; // Vertical centering
+  justify-content: center; // Horizontal centering
+  position: relative; // Relative positioning to manage within main container
 
-.profile-image {
-  width: 25vw; /* 20% of the viewport width */
-  height: auto;
-  max-width: 350px;
-  max-height: 350px;
-  display: block;
-  margin: 0 auto;
-  object-fit: cover;
-  border-radius: 0; /* Ensures it's a square */
-  filter: grayscale(100%); /* Converts image to grayscale */
-}
+  .profile-image {
+    width: 25vw;  // Adjust width as needed
+    height: auto;
+    max-width: 350px;  // Or your specific max-width
+    max-height: 350px; // Or your specific max-height
+    display: block;
+    margin: 0 auto;  // Centering the image horizontally
+    object-fit: cover; // Adjust to fit the content box
+    filter: grayscale(100%); // Grayscale filter
+  }
 
-.hero-text {
-  position: absolute;
-  font-size: 1rem;
-  color: $text-dark;
-  font-weight: bold;
-  white-space: nowrap;
-}
+  .hero-text {
+    position: absolute;
+    font-size: 1rem;
+    color: $text-dark;
+    font-weight: bold;
+    white-space: nowrap;
 
-.top-left {
-  top: 10%;
-  left: 10%;
-}
-
-.top-right {
-  top: 10%;
-  right: 10%;
-}
-
-.bottom-left {
-  bottom: 10%;
-  left: 10%;
-}
-
-.bottom-right {
-  bottom: 10%;
-  right: 10%;
+    &.top-left {
+      top: 10%;
+      left: 10%;
+    }
+    &.top-right {
+      top: 10%;
+      right: 10%;
+    }
+    &.bottom-left {
+      bottom: 10%;
+      left: 10%;
+    }
+    &.bottom-right {
+      bottom: 10%;
+      right: 10%;
+    }
+  }
 }

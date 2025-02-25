@@ -7,37 +7,61 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'PP Neue Bit', sans-serif;
-  background-color: $background-dark; /* Always Dark */
   color: $text-dark;
   position: relative;
+  background-color: $background-dark; /* The dark background for the entire site */
 }
 
+/* Noise Overlay applied only to the background */
 body::after {
   content: "";
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
   pointer-events: none;
-  background-image: url("/noise.avif"); 
-    background-repeat: repeat;
-  background-size: 200px 200px; 
-  mix-blend-mode: multiply; 
-  animation: staticNoise 0.2s steps(2) infinite;
+  background-color: $background-dark;
+  background-image: url("/noise.avif"); // Your noise image
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  mix-blend-mode: multiply;
+  animation: staticNoise 6s steps(10) infinite;
+  z-index: -1; /* Ensure the noise overlay is behind all content */
 }
 
 @keyframes staticNoise {
-  0% {
-    background-position: 0 0;
+  0%, 100% {
+    transform: translate(0, 0);
   }
-  100% {
-    background-position: 10px -10px;
+  10% {
+    transform: translate(-5%, -10%);
+  }
+  20% {
+    transform: translate(-15%, 5%);
+  }
+  30% {
+    transform: translate(7%, -10%);
+  }
+  40% {
+    transform: translate(-5%, 10%);
+  }
+  50% {
+    transform: translate(-15%, 10%);
+  }
+  60% {
+    transform: translate(15%, 0);
+  }
+  70% {
+    transform: translate(0, 10%);
+  }
+  80% {
+    transform: translate(3%, 10%);
+  }
+  90% {
+    transform: translate(-10%, 10%);
   }
 }
-
-
-
 
 #root {
   width: 100%;
@@ -46,9 +70,10 @@ body::after {
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 200px; 
+  scroll-padding-top: 200px;
 }
-/* Container */
+
+/* Global Container */
 .container {
   width: $container-width;
   max-width: $max-width;
@@ -56,6 +81,7 @@ html {
   padding: 0 20px;
 }
 
+/* Global Section Styles */
 section {
   padding: $section-padding;
   text-align: center;

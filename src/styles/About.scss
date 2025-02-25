@@ -1,13 +1,12 @@
 @use "./variables" as *;
 @use "./mixins" as *;
 
-
 .about {
   padding: $section-padding;
   text-align: center;
-  background-color: transparent;
   color: $text-dark;
 
+  // Override container defaults if required
   .container {
     max-width: $max-width;
     margin: 0 auto;
@@ -24,9 +23,8 @@
   margin-bottom: 20px;
 }
 
-
 .about-text {
-  font-size: .9rem;
+  font-size: 0.9rem;
   color: white;
   max-width: 800px;
   margin: 0 auto;

@@ -1,15 +1,19 @@
 @use "./variables" as *;
 @use "./mixins" as *;
 
-
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
   padding: 12px 0;
-  background: transparent;
+  box-shadow: none !important;
   transition: backdrop-filter 0.3s ease-in-out;
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;  // No blur by default
+  z-index: 2;            // Ensure it's above the noise overlay
+
+  &.scrolled {
+    backdrop-filter: blur(15px);  // Apply blur once scrolled
+  }
 
   .nav-link {
     font-size: 1.1rem;
