@@ -1,50 +1,77 @@
-# React + TypeScript + Vite
+# Jack Griffin | Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal portfolio website showcasing my projects and skills in data science, software engineering, and algorithm development.
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
 
-## Expanding the ESLint configuration
+This portfolio serves as a central hub for my professional information, featuring my background in computational methods and software engineering, along with links to my technical projects and contact information.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The website is designed to provide visitors with insights into my:
 
-- Configure the top-level `parserOptions` property like this:
+- Technical expertise in data science and algorithm development
+- Software engineering projects and implementations
+- Professional background and skills
+- Contact information and professional networks
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Featured Projects
+
+### Quantitative Sparse Portfolio Optimisation
+A sophisticated algorithm for financial index tracking with reduced transaction costs, built using advanced optimisation techniques and Python.
+
+### Cryptocurrency Trading Platform
+A full-stack application demonstrating secure authentication, real-time data integration, and modular backend architecture using the MERN stack.
+
+## Technologies
+
+The portfolio is built with modern web technologies:
+
+- **React** with TypeScript for structured, type-safe components
+- **SCSS** with custom variables and mixins for maintainable styling
+- **Responsive design** for optimal viewing on all devices
+- **Component-based architecture** for modular development
+
+## Project Structure
+
+```
+src/
+├── assets/           # Images and static resources
+├── components/       # Reusable UI components
+│   ├── Background.tsx
+│   └── Navbar.tsx
+├── sections/         # Main page sections
+│   ├── About.tsx     # About me section
+│   ├── Bio.tsx       # Detailed biography
+│   ├── Contact.tsx   # Contact information
+│   ├── Footer.tsx    # Page footer
+│   ├── Hero.tsx      # Landing section
+│   └── Projects.tsx  # Featured projects
+├── styles/           # SCSS styling
+│   ├── mixins.scss   # Reusable SCSS functions
+│   ├── typography.scss # Typography settings
+│   ├── variables.scss # Color and size variables
+│   └── [section].scss # Section-specific styles
+├── App.tsx           # Main application component
+└── main.tsx          # Application entry point
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## About Me
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+I am a Computer Science student with a focus on data science, quantitative methods, and software engineering. My interests include:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- Machine learning and predictive analytics
+- Algorithm development and optimisation
+- Computational finance and quantitative methods
+- Building scalable, efficient software systems
+
+## Contact
+
+Jack Griffin  
+Email: [jtgriffin95@gmail.com](mailto:jtgriffin95@gmail.com)  
+LinkedIn: [linkedin.com/in/jackgriffindev](https://www.linkedin.com/in/jackgriffindev/)  
+GitHub: [github.com/griffin1995](https://github.com/griffin1995)  
+Website: [jackgriffin.dev](https://jackgriffin.dev)
