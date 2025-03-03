@@ -6,3 +6,17 @@ yarn-error.log
 .env.development.local
 .env.test.local
 .env.production.local
+.next/
+dist/
+build/
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+.DS_Store
+*.log
+*.bak
+*.swp
+*.tmp
+temp/
+tmp/
