@@ -1,4 +1,4 @@
-import React, { FC, memo } from "react";
+import {  FC, memo  } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Bio.scss";
 import { Container, Row, Col } from "react-bootstrap";

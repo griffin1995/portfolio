@@ -1,4 +1,4 @@
-import React, { FC, memo } from "react";
+import {  FC, memo  } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Footer.scss";
 import { Container } from "react-bootstrap";

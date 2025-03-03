@@ -1,4 +1,4 @@
-import React, { FC, memo } from "react";
+import {  FC, memo  } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Hero.scss";
 import { Container, Row, Col, Image } from "react-bootstrap";

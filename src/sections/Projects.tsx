@@ -1,4 +1,4 @@
-import React, { useRef, FC } from "react";
+import {  useRef, FC  } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Projects.scss";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
