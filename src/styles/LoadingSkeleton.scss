@@ -1,0 +1,116 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+.skeleton-container {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.skeleton-project {
+  max-width: 400px;
+  margin: 0 auto;
+  background: rgba(20, 20, 20, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.skeleton-content {
+  padding: 20px;
+}
+
+.skeleton-image {
+  height: 200px;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.skeleton-title {
+  height: 24px;
+  width: 80%;
+}
+
+.skeleton-text {
+  height: 16px;
+  width: 100%;
+
+  &.short {
+    width: 60%;
+  }
+
+  &.medium {
+    width: 75%;
+  }
+}
+
+.skeleton-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.skeleton-button {
+  height: 36px;
+  width: 100px;
+  margin-bottom: 0;
+}
+
+.skeleton-hero {
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.skeleton-hero-image {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  margin: 0 auto 30px;
+}
+
+.skeleton-hero-text {
+  height: 20px;
+  width: 150px;
+  margin: 0 auto 15px;
+}
+
+.skeleton-text-block {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@keyframes loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@include responsive(md) {
+  .skeleton-container {
+    padding: 15px;
+  }
+
+  .skeleton-hero-image {
+    width: 200px;
+    height: 200px;
+  }
+
+  .skeleton-buttons {
+    flex-direction: column;
+  }
+
+  .skeleton-button {
+    width: 100%;
+  }
+}
