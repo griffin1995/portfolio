@@ -1,34 +1,76 @@
 @use "sass:color"; // Import Sass color functions
+@use "./variables" as *;
 
 /* Reusable Mixins */
 @mixin flex-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @mixin button-style($bg-color) {
-    background-color: $bg-color;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: 0.3s;
+  background-color: $bg-color;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
 
-    &:hover {
-        background-color: color.adjust($bg-color, $lightness: -10%);
-    }
+  &:hover {
+    background-color: color.adjust($bg-color, $lightness: -10%);
+  }
 }
 
 @mixin section-padding {
-    padding: 80px 0;
+  padding: 80px 0;
 }
 
+// Enhanced responsive mixins
 @mixin responsive($breakpoint) {
-    @if $breakpoint == tablet {
-        @media (max-width: 768px) { @content; }
-    } @else if $breakpoint == mobile {
-        @media (max-width: 480px) { @content; }
+  @if $breakpoint == xs {
+    @media (max-width: $breakpoint-xs) {
+      @content;
     }
+  } @else if $breakpoint == sm {
+    @media (max-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == md {
+    @media (max-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == lg {
+    @media (max-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == tablet {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $breakpoint == mobile {
+    @media (max-width: 480px) {
+      @content;
+    }
+  }
+}
+
+@mixin mobile-first($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) {
+      @content;
+    }
+  }
 }

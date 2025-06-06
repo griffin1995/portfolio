@@ -5,9 +5,17 @@ $background-dark: #292929;
 $text-dark: #ffffff;
 
 /* Font Variables */
-$font-family: 'Poppins', sans-serif;
+$font-family: "Poppins", sans-serif;
 
 /* Spacing Variables */
 $container-width: 90%;
 $max-width: 1200px;
 $section-padding: 80px 0;
+$section-padding-mobile: 40px 0;
+
+/* Breakpoint Variables */
+$breakpoint-xs: 480px;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;

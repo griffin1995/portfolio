@@ -6,21 +6,51 @@
   text-align: center;
   color: $text-dark;
 
-  // Override container defaults if required
+  // Mobile padding
+  @include responsive(md) {
+    padding: $section-padding-mobile;
+  }
+
   .container {
     max-width: $max-width;
     margin: 0 auto;
     padding: 20px;
+
+    @include responsive(md) {
+      padding: 15px;
+    }
   }
 }
 
 .about-heading {
   font-size: 16rem;
-  font-family: 'PP Editorial Old', serif;
+  font-family: "PP Editorial Old", serif;
   color: white;
   font-weight: 200;
   text-transform: uppercase;
   margin-bottom: 20px;
+  line-height: 0.8;
+
+  // Tablet
+  @include responsive(lg) {
+    font-size: 12rem;
+  }
+
+  @include responsive(md) {
+    font-size: 8rem;
+    margin-bottom: 15px;
+  }
+
+  // Mobile
+  @include responsive(sm) {
+    font-size: 5rem;
+    margin-bottom: 10px;
+  }
+
+  @include responsive(xs) {
+    font-size: 3.5rem;
+    line-height: 0.9;
+  }
 }
 
 .about-text {
@@ -29,4 +59,15 @@
   max-width: 800px;
   margin: 0 auto;
   line-height: 1.6;
+
+  @include responsive(md) {
+    font-size: 0.85rem;
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  @include responsive(sm) {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
 }

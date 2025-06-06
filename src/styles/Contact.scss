@@ -4,20 +4,46 @@
 .contact {
   padding: 50px 0;
 
+  @include responsive(md) {
+    padding: 30px 0;
+  }
+
   .social-icons {
     display: flex;
     justify-content: center;
     gap: 30px;
+
+    @include responsive(sm) {
+      gap: 20px;
+      flex-wrap: wrap;
+    }
   }
 
   .social-icon {
     font-size: 2rem;
     color: white;
     transition: transform 0.2s ease-in-out;
+    min-height: 44px; // Better touch target
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
       transform: scale(1.2);
-      color: #f0f0f0; // Light grey on hover
+      color: #f0f0f0;
+    }
+
+    @include responsive(md) {
+      font-size: 1.8rem;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    @include responsive(sm) {
+      font-size: 1.6rem;
     }
   }
 }

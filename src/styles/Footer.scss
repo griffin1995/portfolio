@@ -6,13 +6,35 @@
   text-align: center;
   padding: 20px 0;
 
+  @include responsive(sm) {
+    padding: 15px 0;
+  }
+
   // Scope container styles only to direct children within the footer.
   > .container {
     max-width: $max-width;
     margin: 0 auto;
+    padding: 0 20px;
+
+    @include responsive(md) {
+      padding: 0 15px;
+    }
+
+    @include responsive(sm) {
+      padding: 0 10px;
+    }
   }
 
   p {
     font-size: 1rem;
+    margin: 0;
+
+    @include responsive(md) {
+      font-size: 0.9rem;
+    }
+
+    @include responsive(sm) {
+      font-size: 0.85rem;
+    }
   }
 }
