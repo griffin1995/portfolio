@@ -1,4 +1,4 @@
-import {  FC, memo  } from "react";
+import { FC, memo } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Contact.scss";
 import { Container, Row, Col } from "react-bootstrap";
@@ -14,7 +14,8 @@ const Contact: FC = () => (
               href="https://github.com/griffin1995"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub"
+              aria-label="Visit Jack Griffin's GitHub profile"
+              title="GitHub Profile"
             >
               <FaGithub className="social-icon" />
             </a>
@@ -22,11 +23,16 @@ const Contact: FC = () => (
               href="https://www.linkedin.com/in/jackgriffindev/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="LinkedIn"
+              aria-label="Visit Jack Griffin's LinkedIn profile"
+              title="LinkedIn Profile"
             >
               <FaLinkedin className="social-icon" />
             </a>
-            <a href="mailto:jtgriffin95@gmail.com" aria-label="Email">
+            <a
+              href="mailto:jtgriffin95@gmail.com"
+              aria-label="Send email to Jack Griffin"
+              title="Send Email"
+            >
               <FaEnvelope className="social-icon" />
             </a>
           </div>
