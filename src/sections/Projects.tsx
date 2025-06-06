@@ -1,45 +1,41 @@
-import {  useRef, FC  } from "react";
+import { useRef, FC, Suspense, lazy, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Projects.scss";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
+import { Project } from "../types";
+import ResponsiveImage from "../components/ResponsiveImage";
+
+// Lazy load Framer Motion only when needed
+const FramerMotionComponents = lazy(
+  () => import("../components/FramerMotionComponents")
+);
 
 // Import images
 import financeImg from "../assets/placeholder-finance.jpg";
 import cryptoImg from "../assets/placeholder-crypto.jpg";
 
-interface Project {
-  title: string;
-  description: string;
-  image: string;
-  alt: string;
-  techStack: string;
-  concepts: string;
-  buttons: { label: string; link: string }[];
-}
-
 const projectsData: Project[] = [
   {
-    title: "Machine Learning for Financial Portfolio Optimisation",
+    title: "Robust Sparse Index Tracking under Multiple Risk Formulations",
     description:
-      "An AI-driven system optimising financial portfolios using LASSO regression, Markowitz’s Portfolio Theory, and deep learning for predictive trading strategies.",
+      "Designed a machine learning system for sparse financial index tracking using Empirical (ETE), Downside Risk (DR), and their Huber-robust variants (HETE, HDR). Included cardinality constraints, parameter sensitivity analysis, and regime-aware backtesting across 152 rolling windows. Achieved consistent benchmark outperformance with portfolios of just 10 assets.",
     image: financeImg,
-    alt: "Financial Optimisation",
-    techStack: "Python, Scikit-Learn, TensorFlow, Flask, PostgreSQL",
-    concepts: "LASSO Regression, Portfolio Theory, Deep Learning",
-    buttons: [
-      { label: "Read Paper", link: "#" },
-      { label: "GitHub", link: "#" },
-    ],
+    alt: "Sparse Index Tracking Visualisation",
+    techStack:
+      "Python, NumPy, SciPy, Pandas, Matplotlib, Seaborn, Jupyter, JSON, Custom Solvers",
+    concepts:
+      "Sparse Optimisation, Tracking Error Minimisation, Robust Statistics, Majorisation Minimisation, SQUAREM Acceleration, Market Regime Analysis",
+    buttons: [{ label: "Request Access", link: "request-access" }],
   },
   {
     title: "Full-Stack Cryptocurrency Trading Platform",
     description:
-      "A full-stack crypto trading platform featuring real-time analytics, AI-driven strategies, and WebSockets for live price tracking.",
+      "Built a full-stack cryptocurrency trading platform with real-time price tracking via WebSockets, interactive charting, trade execution logic, and PostgreSQL-backed logging. Designed for modularity and deployed with Firebase, featuring user authentication and persistent trade history.",
     image: cryptoImg,
-    alt: "Crypto Trading Platform",
-    techStack: "React, Node.js, PostgreSQL, WebSockets, Firebase, TensorFlow",
-    concepts: "Real-Time Analytics, AI Strategies, WebSockets",
+    alt: "Cryptocurrency Trading Platform Interface",
+    techStack: "React, Node.js, PostgreSQL, WebSockets, Firebase",
+    concepts:
+      "Real-Time Analytics, WebSockets, Trade Execution, Modular Architecture",
     buttons: [
       { label: "Explore Platform", link: "#" },
       { label: "GitHub", link: "#" },
@@ -51,71 +47,150 @@ interface ProjectCardProps {
   project: Project;
 }
 
-const ProjectCard: FC<ProjectCardProps> = ({ project }) => (
-  <Col md={6} lg={5}>
-    <Card className="project-card">
-      <Card.Img variant="top" src={project.image} alt={project.alt} loading="lazy" />
-      <Card.Body>
-        <Card.Title>{project.title}</Card.Title>
-        <Card.Text>{project.description}</Card.Text>
-        <span className="small-text">
-          <strong>Tech Stack:</strong> {project.techStack} <br />
-          <strong>Concepts:</strong> {project.concepts}
-        </span>
-        <div className="button-group">
-          {project.buttons.map((button, index) => (
-            <Button
-              key={button.label}
-              variant={index === 0 ? "primary" : "outline-secondary"}
-              href={button.link}
+const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
+  const [showEmailForm, setShowEmailForm] = useState(false);
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  const handleButtonClick = (button: { label: string; link: string }) => {
+    if (button.link === "request-access") {
+      setShowEmailForm(!showEmailForm);
+      setSubmitMessage(""); // Clear any previous messages
+    } else {
+      // External link
+      window.open(button.link, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const handleEmailSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!email || !email.includes("@")) {
+      setSubmitMessage("Please enter a valid email address.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitMessage("");
+
+    try {
+      // Simulate API call - replace with your actual endpoint
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      // For now, just show success message
+      setSubmitMessage(
+        "Thank you! Your access request has been submitted. You'll hear from us soon."
+      );
+      setEmail("");
+      setShowEmailForm(false);
+
+      // TODO: Replace with actual API call
+      console.log(
+        "Access request submitted for:",
+        email,
+        "Project:",
+        project.title
+      );
+    } catch (error) {
+      setSubmitMessage(
+        "Sorry, there was an error submitting your request. Please try again."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <Col md={6} lg={5}>
+      <Card className="project-card">
+        <ResponsiveImage
+          src={project.image}
+          alt={project.alt}
+          className="card-img-top"
+          loading="lazy"
+          sizes={{
+            mobile: project.image,
+            tablet: project.image,
+            desktop: project.image,
+          }}
+        />
+        <Card.Body>
+          <Card.Title>{project.title}</Card.Title>
+          <Card.Text>{project.description}</Card.Text>
+          <span className="small-text">
+            <strong>Tech Stack:</strong> {project.techStack} <br />
+            <strong>Concepts:</strong> {project.concepts}
+          </span>
+
+          <div className="button-group">
+            {project.buttons.map((button, index) => (
+              <Button
+                key={button.label}
+                variant={index === 0 ? "primary" : "outline-secondary"}
+                onClick={() => handleButtonClick(button)}
+                aria-label={`${button.label} for ${project.title}`}
+                disabled={isSubmitting}
+              >
+                {button.label}
+              </Button>
+            ))}
+          </div>
+
+          {/* Email Request Form */}
+          {showEmailForm && (
+            <div className="email-request-form">
+              <Form onSubmit={handleEmailSubmit}>
+                <Form.Group className="mb-3">
+                  <Form.Control
+                    id={`email-${project.title}`}
+                    type="email"
+                    placeholder="Enter your email address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    disabled={isSubmitting}
+                    className="email-input"
+                  />
+                </Form.Group>
+                <div className="form-buttons">
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Submitting..." : "Submit"}
+                  </Button>
+                </div>
+              </Form>
+            </div>
+          )}
+
+          {/* Submit Message */}
+          {submitMessage && (
+            <div
+              className={`submit-message mt-2 ${
+                submitMessage.includes("Thank you") ? "success" : "error"
+              }`}
             >
-              {button.label}
-            </Button>
-          ))}
-        </div>
-      </Card.Body>
-    </Card>
-  </Col>
-);
+              {submitMessage}
+            </div>
+          )}
+        </Card.Body>
+      </Card>
+    </Col>
+  );
+};
 
 const Projects: FC = () => {
   const projectsRef = useRef<HTMLElement>(null);
 
-  // Configure useScroll to work with a shorter section:
-  // "start 75%" means progress begins when the top of the Projects section
-  // is at 75% of the viewport height (i.e. near the bottom).
-  // "end 25%" means progress is complete when the bottom of the section is at 25% of the viewport.
-  const { scrollYProgress } = useScroll({
-    target: projectsRef,
-    offset: ["start 75%", "end 25%"],
-  });
-
-  // Map scroll progress to vertical translation:
-  // At progress = 0, the heading is at +50vh (off-screen bottom);
-  // at progress = 0.5, it is at 0 (centered);
-  // at progress = 1, it is at -50vh (off-screen top).
-  const y = useTransform(scrollYProgress, [0, 0.5, 1], ["50vh", "0vh", "-50vh"]);
-
-  // Map scroll progress to opacity: fully opaque at mid-scroll, transparent at the edges.
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
-
   return (
     <section id="projects" className="projects py-5" ref={projectsRef}>
-      <motion.h2
-        className="work-heading"
-        style={{
-          position: "fixed",         // Fixed position relative to the viewport
-          left: "50%",               // Center horizontally
-          transform: "translateX(-50%)", // Center the element exactly
-          y,                        // Vertical translation from Framer Motion
-          opacity,                  // Opacity from Framer Motion
-          color: "white",           // Visible against a dark background
-          zIndex: 3,                // Ensure it appears above other content
-          pointerEvents: "none",    // Prevent interactions
-        }}
-      >
-        Work
-      </motion.h2>
+      <Suspense fallback={<div className="work-heading-placeholder" />}>
+        <FramerMotionComponents projectsRef={projectsRef} />
+      </Suspense>
+
       <Container>
         <Row className="justify-content-center g-5">
           {projectsData.map((project) => (
