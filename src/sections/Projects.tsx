@@ -38,7 +38,7 @@ const projectsData: Project[] = [
     concepts:
       "Real-Time Analytics, WebSocket Architecture, Microservices Design, Trade Execution Algorithms, Portfolio Optimisation, Risk Management, Database Design",
     buttons: [
-      { label: "Explore Platform", link: "#" },
+      { label: "Explore Platform", link: "https://cryptocurrencyplatform.jackgriffin.dev/"},
       {
         label: "GitHub",
         link: "https://github.com/griffin1995/cryptocurrencyPlatform",
