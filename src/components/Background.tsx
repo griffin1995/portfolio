@@ -1,8 +1,10 @@
-import React from "react";
-import "./../styles/Background.scss"; // Ensure this file exists
+import React, { memo } from "react";
+import "../styles/Background.scss";
 
 const Background: React.FC = () => {
-  return <div className="noise-background"></div>;
+  return (
+    <div className="noise-background" role="presentation" aria-hidden="true" />
+  );
 };
 
-export default Background;
+export default memo(Background);

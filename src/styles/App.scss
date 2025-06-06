@@ -6,10 +6,11 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'PP Neue Bit', sans-serif;
+  font-family: "PP Neue Bit", sans-serif;
   color: $text-dark;
   position: relative;
-  background-color: $background-dark; /* The dark background for the entire site */
+  background-color: $background-dark;
+  overflow-x: hidden; // Prevent horizontal scroll
 }
 
 /* Noise Overlay applied only to the background */
@@ -22,16 +23,23 @@ body::after {
   height: 200%;
   pointer-events: none;
   background-color: $background-dark;
-  background-image: url("/noise.avif"); // Your noise image
+  background-image: url("/noise.avif");
   background-repeat: repeat;
   background-size: 200px 200px;
   mix-blend-mode: multiply;
   animation: staticNoise 6s steps(10) infinite;
-  z-index: -1; /* Ensure the noise overlay is behind all content */
+  z-index: -1;
+
+  // Reduce animation intensity on mobile for performance
+  @include responsive(md) {
+    animation: staticNoise 8s steps(8) infinite;
+    background-size: 150px 150px;
+  }
 }
 
 @keyframes staticNoise {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0, 0);
   }
   10% {
@@ -71,6 +79,10 @@ body::after {
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 200px;
+
+  @include responsive(md) {
+    scroll-padding-top: 100px;
+  }
 }
 
 /* Global Container */
@@ -79,20 +91,202 @@ html {
   max-width: $max-width;
   margin: 0 auto;
   padding: 0 20px;
+
+  @include responsive(md) {
+    padding: 0 15px;
+  }
+
+  @include responsive(sm) {
+    padding: 0 10px;
+  }
 }
 
 /* Global Section Styles */
 section {
   padding: $section-padding;
   text-align: center;
+
+  @include responsive(md) {
+    padding: $section-padding-mobile;
+  }
+
+  @include responsive(sm) {
+    padding: 30px 0;
+  }
 }
 
 /* Button Styles */
 .btn {
   @include button-style($primary-color);
   margin: 10px;
+
+  @include responsive(md) {
+    margin: 5px;
+    font-size: 0.9rem;
+  }
+
+  @include responsive(sm) {
+    margin: 3px;
+    padding: 8px 16px;
+  }
 }
 
 .btn-secondary {
   @include button-style($secondary-color);
+}
+
+/* Loading States */
+.projects-loading,
+.bio-loading {
+  padding: 40px 0;
+
+  @include responsive(md) {
+    padding: 20px 0;
+  }
+}
+
+.about-heading-skeleton {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include responsive(md) {
+    height: 150px;
+  }
+}
+
+.hero-skeleton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.work-heading-placeholder {
+  height: 60px;
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+  margin: 40px auto;
+  max-width: 200px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Animation Classes */
+.animate-in {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Image Loading States */
+.profile-image {
+  transition: opacity 0.3s ease-in-out;
+
+  &.loading {
+    opacity: 0;
+  }
+
+  &.loaded {
+    opacity: 1;
+  }
+}
+
+/* Mobile-specific utilities */
+@include responsive(md) {
+  // Ensure text doesn't get too small
+  body {
+    font-size: 16px;
+  }
+
+  // Better touch targets
+  a,
+  button,
+  .btn {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Prevent horizontal overflow */
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mobile typography adjustments */
+@include responsive(sm) {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+  }
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  body::after {
+    animation: none;
+  }
+}
+
+/* Focus styles for better accessibility */
+a:focus,
+button:focus,
+.btn:focus {
+  outline: 2px solid $primary-color;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  body::after {
+    display: none;
+  }
+
+  .navbar,
+  .scroll-progress-container {
+    display: none;
+  }
 }
