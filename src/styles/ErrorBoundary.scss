@@ -1,0 +1,39 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+.error-boundary {
+  min-height: 400px;
+  padding: 2rem;
+  background-color: $background-dark;
+  color: white;
+
+  .error-content {
+    max-width: 500px;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .btn {
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
