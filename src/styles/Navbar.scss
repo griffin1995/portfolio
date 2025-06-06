@@ -8,11 +8,11 @@
   padding: 12px 0;
   box-shadow: none !important;
   transition: backdrop-filter 0.3s ease-in-out;
-  backdrop-filter: none;  // No blur by default
-  z-index: 2;            // Ensure it's above the noise overlay
+  backdrop-filter: none;
+  z-index: 2;
 
   &.scrolled {
-    backdrop-filter: blur(15px);  // Apply blur once scrolled
+    backdrop-filter: blur(15px);
   }
 
   .nav-link {
@@ -25,12 +25,77 @@
     &:hover {
       color: $primary-color !important;
     }
+
+    @include responsive(md) {
+      font-size: 1rem;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
   }
 
-  .navbar-brand {
+  // Desktop Layout Styles
+  .navbar-nav-left,
+  .navbar-nav-right {
+    display: flex;
+    gap: 2rem;
+
+    .nav-link {
+      padding: 0.5rem 0;
+    }
+  }
+
+  .navbar-nav-left {
+    justify-content: flex-start;
+    flex: 1;
+  }
+
+  .navbar-nav-right {
+    justify-content: flex-end;
+    flex: 1;
+  }
+
+  .navbar-center {
+    display: flex;
+    justify-content: center;
+    flex: 0 0 auto;
+    margin: 0 2rem;
+  }
+
+  .center-brand {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  // Mobile logo only (left side)
+  .mobile-logo-only {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  // Mobile name center
+  .mobile-name-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none; // Allow clicks to pass through to logo/hamburger
+
+    .navbar-text-mobile {
+      font-size: 1rem;
+      color: white;
+      font-weight: 600;
+      white-space: nowrap;
+    }
   }
 
   .navbar-logo {
@@ -38,9 +103,88 @@
     height: auto;
   }
 
+  .navbar-logo-mobile {
+    width: 40px;
+    height: auto;
+  }
+
   .navbar-text {
     font-size: 0.9rem;
     text-decoration: underline;
     color: white;
+    margin-top: 0.25rem;
+  }
+
+  .navbar-text-mobile {
+    font-size: 1rem;
+    color: white;
+    font-weight: 600;
+  }
+
+  // Mobile navigation styles
+  .mobile-nav {
+    flex-direction: column;
+    width: 100%;
+    padding-top: 20px;
+
+    .nav-link {
+      text-align: center;
+      padding: 15px 0;
+    }
+
+    // Only show on mobile
+    @include mobile-first(lg) {
+      display: none !important;
+    }
+  }
+
+  // Hamburger menu customisation
+  .navbar-toggler {
+    border: none;
+    padding: 4px 8px;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+
+  // Responsive adjustments
+  @include responsive(md) {
+    padding: 8px 0;
+
+    .container {
+      padding: 0 15px;
+    }
+  }
+
+  @include responsive(sm) {
+    .navbar-text-mobile {
+      font-size: 0.9rem;
+    }
+
+    .navbar-logo-mobile {
+      width: 35px;
+    }
+  }
+
+  // Hide desktop layout on mobile
+  @include responsive(lg) {
+    .navbar-nav-left,
+    .navbar-nav-right,
+    .navbar-center {
+      display: none !important;
+    }
+  }
+
+  // Ensure proper spacing in desktop layout
+  @include mobile-first(lg) {
+    .container > .d-lg-flex {
+      align-items: center;
+      justify-content: space-between;
+    }
   }
 }
