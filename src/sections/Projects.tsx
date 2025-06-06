@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Projects.scss";
 import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
 import { Project } from "../types";
-import ResponsiveImage from "../components/ResponsiveImage";
 
 // Lazy load Framer Motion only when needed
 const FramerMotionComponents = lazy(
@@ -118,17 +117,6 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
   return (
     <Col md={6} lg={4} className="mb-4">
       <Card className="project-card h-100">
-        <ResponsiveImage
-          src={project.image}
-          alt={project.alt}
-          className="card-img-top"
-          loading="lazy"
-          sizes={{
-            mobile: project.image,
-            tablet: project.image,
-            desktop: project.image,
-          }}
-        />
         <Card.Body className="d-flex flex-column">
           <Card.Title>{project.title}</Card.Title>
           <Card.Text className="flex-grow-1">{project.description}</Card.Text>
