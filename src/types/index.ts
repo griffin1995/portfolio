@@ -3,7 +3,6 @@
 export interface Project {
   title: string;
   description: string;
-  image: string;
   alt: string;
   techStack: string;
   concepts: string;
