@@ -24,19 +24,24 @@
   <head>
     <meta charset="UTF-8" />
     
+    <!-- Modern Meta Viewport with additional optimisations -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
     <!-- Adaptive Favicons for Light/Dark Mode -->
-    <link rel="icon" type="image/png" href="/griffin.png" media="(prefers-color-scheme: dark)">
-    <link rel="icon" type="image/png" href="/griffin-dark.png" media="(prefers-color-scheme: light)">
-    <link rel="icon" type="image/png" href="/griffin.png" media="(prefers-color-scheme: no-preference)">
+    <link rel="icon" type="image/png" href="/griffin_light.png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" href="/griffin_dark.png" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" href="/griffin_light.png" media="(prefers-color-scheme: no-preference)">
     
     <!-- Fallback favicon for older browsers -->
-    <link rel="icon" type="image/png" href="/griffin.png">
+    <link rel="icon" type="image/png" href="/griffin_light.png">
     
     <!-- Apple Touch Icons -->
-    <link rel="apple-touch-icon" href="/griffin.png" media="(prefers-color-scheme: dark)">
-    <link rel="apple-touch-icon" href="/griffin-dark.png" media="(prefers-color-scheme: light)">
+    <link rel="apple-touch-icon" href="/griffin_light.png" media="(prefers-color-scheme: dark)">
+    <link rel="apple-touch-icon" href="/griffin_dark.png" media="(prefers-color-scheme: light)">
     
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Modern resource hints for better performance -->
+    <link rel="preload" href="/griffin_dark.png" as="image" type="image/png">
+    <link rel="preload" href="/noise.avif" as="image" type="image/avif">
     
     <!-- Primary Meta Tags -->
     <title>Jack Griffin - Machine Learning & Data Science Portfolio</title>
@@ -69,13 +74,20 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Jack Griffin Portfolio">
     
-    <!-- Preconnect to external resources -->
+    <!-- Modern preconnect to external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.prod.website-files.com">
     
     <!-- DNS Prefetch for better performance -->
     <link rel="dns-prefetch" href="//www.transparenttextures.com">
+    <link rel="dns-prefetch" href="//github.com">
+    <link rel="dns-prefetch" href="//linkedin.com">
+    
+    <!-- Modern Performance Hints -->
+    <link rel="modulepreload" href="/src/main.tsx">
+    <link rel="prefetch" href="/src/sections/Projects.tsx">
+    <link rel="prefetch" href="/src/sections/Bio.tsx">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://jackgriffin.dev/">
@@ -107,7 +119,32 @@
     </script>
   </head>
   <body>
+    <!-- No-JS fallback -->
+    <noscript>
+      <div style="text-align: center; padding: 50px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+        <h1>Jack Griffin - Portfolio</h1>
+        <p>This site requires JavaScript to function properly. Please enable JavaScript in your browser.</p>
+      </div>
+    </noscript>
+    
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Modern script loading with error handling -->
+    <script type="module" src="/src/main.tsx" onerror="console.error('Failed to load main script')"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
   </body>
 </html>
