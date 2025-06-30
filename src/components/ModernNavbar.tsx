@@ -3,10 +3,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Navbar.scss";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import griffinLogo from "../assets/griffin_light.png";
+import { useSmoothScroll } from "../hooks/useSmoothScroll";
 
-const Navigation: FC = () => {
+const ModernNavbar: FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const { scrollToElement, scrollToTop } = useSmoothScroll();
 
   const handleScroll = useCallback(() => {
     const isScrolled = window.scrollY > 50;
@@ -36,9 +38,16 @@ const Navigation: FC = () => {
     };
   }, [handleScroll]);
 
-  const handleNavClick = useCallback(() => {
+  const handleNavClick = useCallback((targetId: string, event: React.MouseEvent) => {
+    event.preventDefault();
     setExpanded(false);
-  }, []);
+    
+    if (targetId === '#home') {
+      scrollToTop();
+    } else {
+      scrollToElement(targetId);
+    }
+  }, [scrollToElement, scrollToTop]);
 
   const handleToggle = useCallback((expanded: boolean) => {
     setExpanded(expanded);
@@ -61,14 +70,16 @@ const Navigation: FC = () => {
           <Navbar.Brand
             href="#home"
             className="mobile-logo-only"
-            onClick={handleNavClick}
+            onClick={(e) => handleNavClick('#home', e)}
             aria-label="Jack Griffin - Home"
           >
             <img
               src={griffinLogo}
-              alt=""
+              alt="Jack Griffin logo"
               className="navbar-logo-mobile"
               loading="eager"
+              width="32"
+              height="32"
             />
           </Navbar.Brand>
 
@@ -88,10 +99,18 @@ const Navigation: FC = () => {
         <div className="d-none d-lg-flex w-100 align-items-center">
           {/* Left Navigation Links */}
           <Nav className="navbar-nav-left">
-            <Nav.Link href="#home" onClick={handleNavClick}>
+            <Nav.Link 
+              href="#home" 
+              onClick={(e) => handleNavClick('#home', e)} 
+              aria-label="Navigate to Home section"
+            >
               Home
             </Nav.Link>
-            <Nav.Link href="#about-text" onClick={handleNavClick}>
+            <Nav.Link 
+              href="#about-text" 
+              onClick={(e) => handleNavClick('#about-text', e)} 
+              aria-label="Navigate to About section"
+            >
               About
             </Nav.Link>
           </Nav>
@@ -101,14 +120,16 @@ const Navigation: FC = () => {
             <Navbar.Brand
               href="#home"
               className="center-brand"
-              onClick={handleNavClick}
+              onClick={(e) => handleNavClick('#home', e)}
               aria-label="Jack Griffin - Home"
             >
               <img
                 src={griffinLogo}
-                alt=""
+                alt="Jack Griffin logo"
                 className="navbar-logo"
                 loading="eager"
+                width="40"
+                height="40"
               />
               <span className="navbar-text">Jack Griffin</span>
             </Navbar.Brand>
@@ -116,10 +137,18 @@ const Navigation: FC = () => {
 
           {/* Right Navigation Links */}
           <Nav className="navbar-nav-right">
-            <Nav.Link href="#projects" onClick={handleNavClick}>
+            <Nav.Link 
+              href="#projects" 
+              onClick={(e) => handleNavClick('#projects', e)} 
+              aria-label="Navigate to Projects section"
+            >
               Projects
             </Nav.Link>
-            <Nav.Link href="#bio" onClick={handleNavClick}>
+            <Nav.Link 
+              href="#bio" 
+              onClick={(e) => handleNavClick('#bio', e)} 
+              aria-label="Navigate to Bio section"
+            >
               Bio
             </Nav.Link>
           </Nav>
@@ -128,16 +157,32 @@ const Navigation: FC = () => {
         {/* Mobile Collapsible Navigation */}
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mobile-nav d-lg-none">
-            <Nav.Link href="#home" onClick={handleNavClick}>
+            <Nav.Link 
+              href="#home" 
+              onClick={(e) => handleNavClick('#home', e)} 
+              aria-label="Navigate to Home section"
+            >
               Home
             </Nav.Link>
-            <Nav.Link href="#about-text" onClick={handleNavClick}>
+            <Nav.Link 
+              href="#about-text" 
+              onClick={(e) => handleNavClick('#about-text', e)} 
+              aria-label="Navigate to About section"
+            >
               About
             </Nav.Link>
-            <Nav.Link href="#projects" onClick={handleNavClick}>
+            <Nav.Link 
+              href="#projects" 
+              onClick={(e) => handleNavClick('#projects', e)} 
+              aria-label="Navigate to Projects section"
+            >
               Projects
             </Nav.Link>
-            <Nav.Link href="#bio" onClick={handleNavClick}>
+            <Nav.Link 
+              href="#bio" 
+              onClick={(e) => handleNavClick('#bio', e)} 
+              aria-label="Navigate to Bio section"
+            >
               Bio
             </Nav.Link>
           </Nav>
@@ -147,4 +192,4 @@ const Navigation: FC = () => {
   );
 };
 
-export default Navigation;
+export default ModernNavbar;

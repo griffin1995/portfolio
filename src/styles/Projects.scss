@@ -1,6 +1,38 @@
 @use "./variables" as *;
 @use "./mixins" as *;
 
+// Enhanced project card animations and hover effects
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-5px) scale(1.02); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1); }
+  50% { box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2); }
+}
+
+@keyframes techBadgeFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes buttonPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .projects {
   text-align: center;
   padding: 80px 0;
@@ -13,7 +45,9 @@
   .card {
     background-color: rgba(20, 20, 20, 0.85) !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 0 !important;
+    border-radius: 12px !important;
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
     .card-body {
       background-color: transparent !important;
@@ -21,7 +55,15 @@
     }
 
     .card-img-top {
-      border-radius: 0 !important;
+      border-radius: 12px 12px 0 0 !important;
+    }
+    
+    &:hover {
+      background-color: rgba(25, 25, 25, 0.9) !important;
+      border-color: rgba(255, 255, 255, 0.2) !important;
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      animation: glow 2s ease-in-out infinite;
     }
   }
 }
@@ -47,33 +89,124 @@
   }
 }
 
-.small-text {
-  font-size: 0.85rem;
-  opacity: 0.95;
-  color: rgba(255, 255, 255, 0.95);
+// Enhanced Tech Stack Badges
+.tech-stack-container {
+  margin-bottom: 20px;
+}
 
+.tech-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 15px;
+  justify-content: center;
+}
+
+.tech-badge {
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.2) 0%, rgba(0, 212, 170, 0.2) 100%);
+  border: 1px solid rgba(0, 123, 255, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(5px);
+  cursor: default;
+  
+  &:hover {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.4) 0%, rgba(0, 212, 170, 0.4) 100%);
+    border-color: rgba(0, 123, 255, 0.6);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    animation: techBadgeFloat 1s ease-in-out infinite;
+  }
+  
   @include responsive(sm) {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    padding: 3px 8px;
   }
 }
 
-/* Project Card Styling - MAJOR FIX */
+.concepts-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.concept-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+}
+
+.concept-badge {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 1);
+    transform: translateY(-1px);
+  }
+  
+  @include responsive(sm) {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+  }
+}
+
+/* Project Card Styling - MAJOR ENHANCEMENT */
 .project-card {
   background: rgba(20, 20, 20, 0.85) !important;
-  border-radius: 0px !important;
+  border-radius: 12px !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   box-shadow: 0 8px 20px rgba(255, 255, 255, 0.08);
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transition: left 0.6s ease;
+    z-index: 1;
+    pointer-events: none;
+  }
 
   &:hover {
-    transform: scale(1.03);
-    box-shadow: 0 12px 25px rgba(255, 255, 255, 0.15);
+    background: rgba(25, 25, 25, 0.9) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    animation: glow 2s ease-in-out infinite;
+    
+    &::before {
+      left: 100%;
+    }
   }
 
   // Mobile: reduce hover effects
   @include responsive(md) {
     &:hover {
-      transform: scale(1.01);
+      transform: translateY(-4px) scale(1.01);
+      animation: none;
     }
   }
 
@@ -86,15 +219,17 @@
 
 .project-card .card-body {
   background: transparent !important;
-  padding: 20px;
+  padding: 25px;
   color: white !important;
+  position: relative;
+  z-index: 2;
 
   @include responsive(md) {
-    padding: 15px;
+    padding: 20px;
   }
 
   @include responsive(sm) {
-    padding: 12px;
+    padding: 16px;
   }
 }
 
@@ -106,11 +241,20 @@
 .project-card .card-title,
 .project-card .card-text {
   font-family: "Nikkei", serif;
-  font-weight: 200;
+  font-weight: 300;
   color: white !important;
+  position: relative;
+  z-index: 2;
 }
 
 .project-card .card-title {
+  background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+  margin-bottom: 15px;
+  
   @include responsive(md) {
     font-size: 1.2rem;
   }
@@ -121,16 +265,20 @@
 }
 
 .project-card .card-text {
+  line-height: 1.6;
+  margin-bottom: 20px;
+  
   @include responsive(sm) {
     font-size: 0.9rem;
+    line-height: 1.5;
   }
 }
 
 /* Grayscale Effect for Project Images */
 .project-card img {
   filter: grayscale(100%);
-  transition: filter 0.4s ease-in-out, transform 0.3s ease-in-out;
-  border-radius: 0 !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px 12px 0 0 !important;
   width: 100%;
   height: 200px;
   object-fit: cover;
@@ -150,20 +298,46 @@
   }
 }
 
-/* Button Styling */
+/* Enhanced Button Styling */
 .project-card .btn {
-  background: linear-gradient(135deg, #b3b3b3, #d1d1d1);
-  color: black !important;
-  font-weight: bold;
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  color: white !important;
+  font-weight: 600;
   border: none;
-  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
-  border-radius: 0 !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 25px !important;
   margin: 5px;
+  padding: 10px 20px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
 
   &:hover {
-    background: linear-gradient(135deg, #d1d1d1, #ffffff);
-    transform: scale(1.05);
-    color: black !important;
+    background: linear-gradient(135deg, #0056b3 0%, #007bff 100%);
+    transform: translateY(-2px) scale(1.05);
+    color: white !important;
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.5);
+    animation: buttonPulse 1.5s ease-in-out infinite;
+    
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0px) scale(0.98);
   }
 
   @include responsive(md) {
@@ -172,7 +346,8 @@
     margin: 3px;
 
     &:hover {
-      transform: scale(1.02);
+      transform: translateY(-1px) scale(1.02);
+      animation: none;
     }
   }
 
@@ -190,6 +365,8 @@
   justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
 
   @include responsive(sm) {
     flex-direction: column;
@@ -201,20 +378,23 @@
 .email-request-form {
   margin-top: 15px;
   animation: slideDown 0.3s ease-out;
+  position: relative;
+  z-index: 2;
 }
 
 .email-request-form .email-input {
   background: rgba(60, 60, 60, 0.8) !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
   color: white !important;
-  border-radius: 0;
+  border-radius: 8px;
   padding: 10px 12px;
   font-size: 0.9rem;
+  backdrop-filter: blur(5px);
 
   &:focus {
     background: rgba(70, 70, 70, 0.9) !important;
-    border-color: rgba(255, 255, 255, 0.5) !important;
-    box-shadow: none !important;
+    border-color: rgba(0, 123, 255, 0.5) !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
     color: white !important;
   }
 
@@ -251,9 +431,10 @@
 .submit-message {
   font-size: 0.85rem;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 8px;
   text-align: center;
   animation: fadeIn 0.3s ease-out;
+  backdrop-filter: blur(5px);
 
   &.success {
     background: rgba(40, 167, 69, 0.2);
@@ -289,11 +470,11 @@
   }
 }
 
-// Desktop 3-column layout
+// Desktop 2-column layout (updated)
 @include mobile-first(lg) {
-  .projects .row .col-lg-4 {
-    flex: 0 0 33.333333%;
-    max-width: 33.333333%;
+  .projects .row .col-lg-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
   }
 }
 
@@ -314,7 +495,7 @@
   }
 }
 
-// Ensure proper mobile stacking and desktop 3-column layout
+// Ensure proper mobile stacking and desktop 2-column layout
 .projects .row {
   @include responsive(md) {
     margin: 0 -10px;

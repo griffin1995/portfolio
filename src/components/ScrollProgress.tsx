@@ -1,23 +1,41 @@
-import { useState, useEffect, memo } from 'react';
+import { useState, useEffect, memo, useCallback } from 'react';
 import { ScrollProgressProps } from '../types';
 import '../styles/ScrollProgress.scss';
 
 const ScrollProgress: React.FC<ScrollProgressProps> = ({ className = '' }) => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
+  const updateScrollProgress = useCallback(() => {
+    const scrollTop = window.pageYOffset;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
+    setScrollProgress(progress);
+  }, []);
+
   useEffect(() => {
-    const updateScrollProgress = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = Math.min((scrollTop / docHeight) * 100, 100);
-      setScrollProgress(progress);
+    let rafId: number | null = null;
+
+    const handleScroll = () => {
+      if (rafId !== null) return;
+      
+      rafId = requestAnimationFrame(() => {
+        updateScrollProgress();
+        rafId = null;
+      });
     };
 
     updateScrollProgress(); // Initial calculation
-    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', updateScrollProgress, { passive: true });
     
-    return () => window.removeEventListener('scroll', updateScrollProgress);
-  }, []);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateScrollProgress);
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+    };
+  }, [updateScrollProgress]);
 
   return (
     <div className={`scroll-progress-container ${className}`}>

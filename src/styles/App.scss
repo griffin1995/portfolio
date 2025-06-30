@@ -10,7 +10,27 @@ body {
   color: $text-dark;
   position: relative;
   background-color: $background-dark;
-  overflow-x: hidden; // Prevent horizontal scroll
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  scroll-behavior: auto;
+}
+
+/* Enhanced Background with Animated Gradients */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%),
+    linear-gradient(135deg, $background-dark 0%, rgba(18, 18, 18, 0.95) 100%);
+  animation: gradientShift 20s ease-in-out infinite;
+  z-index: -2;
+  pointer-events: none;
 }
 
 /* Noise Overlay applied only to the background */
@@ -22,18 +42,51 @@ body::after {
   width: 200%;
   height: 200%;
   pointer-events: none;
-  background-color: $background-dark;
+  background-color: transparent;
   background-image: url("/noise.avif");
   background-repeat: repeat;
   background-size: 200px 200px;
-  mix-blend-mode: multiply;
-  animation: staticNoise 6s steps(10) infinite;
+  mix-blend-mode: overlay;
+  opacity: 0.3;
+  animation: staticNoise 8s steps(12) infinite;
   z-index: -1;
 
   // Reduce animation intensity on mobile for performance
   @include responsive(md) {
-    animation: staticNoise 8s steps(8) infinite;
+    animation: staticNoise 10s steps(8) infinite;
     background-size: 150px 150px;
+    opacity: 0.2;
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%),
+      linear-gradient(135deg, $background-dark 0%, rgba(18, 18, 18, 0.95) 100%);
+  }
+  25% {
+    background: 
+      radial-gradient(circle at 60% 30%, rgba(120, 119, 198, 0.4) 0%, transparent 50%),
+      radial-gradient(circle at 20% 70%, rgba(255, 119, 198, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%),
+      linear-gradient(135deg, $background-dark 0%, rgba(22, 22, 22, 0.95) 100%);
+  }
+  50% {
+    background: 
+      radial-gradient(circle at 80% 60%, rgba(120, 119, 198, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 40% 20%, rgba(255, 119, 198, 0.4) 0%, transparent 50%),
+      radial-gradient(circle at 20% 60%, rgba(120, 219, 255, 0.3) 0%, transparent 50%),
+      linear-gradient(135deg, $background-dark 0%, rgba(16, 16, 16, 0.95) 100%);
+  }
+  75% {
+    background: 
+      radial-gradient(circle at 30% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 60% 30%, rgba(120, 219, 255, 0.4) 0%, transparent 50%),
+      linear-gradient(135deg, $background-dark 0%, rgba(20, 20, 20, 0.95) 100%);
   }
 }
 
@@ -77,11 +130,11 @@ body::after {
 }
 
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 200px;
+  scroll-behavior: auto;
+  scroll-padding-top: 80px;
 
   @include responsive(md) {
-    scroll-padding-top: 100px;
+    scroll-padding-top: 70px;
   }
 }
 
@@ -264,10 +317,15 @@ img {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 
   body::after {
     animation: none;
+  }
+  
+  html {
+    scroll-behavior: auto !important;
   }
 }
 

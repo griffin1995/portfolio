@@ -1,10 +1,10 @@
-import React, { Suspense, lazy, useEffect } from "react";
+import React, { Suspense, lazy, useEffect, useMemo } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/App.scss";
 
 // Import critical components directly
 import Background from "./components/Background";
-import Navigation from "./components/Navbar";
+import ModernNavbar from "./components/ModernNavbar";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
 import Contact from "./sections/Contact";
@@ -12,78 +12,99 @@ import Footer from "./sections/Footer";
 import ErrorBoundary from "./components/ErrorBoundary";
 import ScrollProgress from "./components/ScrollProgress";
 import LoadingSkeleton from "./components/LoadingSkeleton";
+import FloatingActionButton from "./components/FloatingActionButton";
+import FloatingParticles from "./components/FloatingParticles";
 
-// Lazy load heavy components
-const Projects = lazy(() => import("./sections/Projects"));
-const Bio = lazy(() => import("./sections/Bio"));
+// Lazy load heavy components with preload hints
+const Projects = lazy(() => 
+  import(/* webpackChunkName: "projects" */ "./sections/Projects")
+);
+const Bio = lazy(() => 
+  import(/* webpackChunkName: "bio" */ "./sections/Bio")
+);
 
 const App: React.FC = () => {
+  // Memoised favicon paths for performance
+  const faviconPaths = useMemo(() => ({
+    dark: "/griffin_light.png",
+    light: "/griffin_dark.png"
+  }), []);
+
   useEffect(() => {
-    // Initialize favicon management
+    // Modern favicon management with performance optimisations
     const initFavicon = () => {
       const updateFavicon = () => {
         const isDarkMode = window.matchMedia(
           "(prefers-color-scheme: dark)"
         ).matches;
         const faviconPath = isDarkMode
-          ? "/griffin_light.png"
-          : "/griffin_dark.png";
+          ? faviconPaths.dark
+          : faviconPaths.light;
 
-        // Update main favicon
-        const existingLink = document.querySelector(
+        // Update main favicon with modern approach
+        let existingLink = document.querySelector(
           'link[rel="icon"]'
         ) as HTMLLinkElement;
-        if (existingLink) {
-          existingLink.href = faviconPath;
-        } else {
-          // Create favicon link if it doesn't exist
-          const link = document.createElement("link");
-          link.rel = "icon";
-          link.type = "image/png";
-          link.href = faviconPath;
-          document.head.appendChild(link);
+        if (!existingLink) {
+          existingLink = document.createElement("link");
+          existingLink.rel = "icon";
+          existingLink.type = "image/png";
+          document.head.appendChild(existingLink);
         }
+        existingLink.href = faviconPath;
 
-        // Update apple touch icon
-        const appleLink = document.querySelector(
+        // Update apple touch icon with modern approach
+        let appleLink = document.querySelector(
           'link[rel="apple-touch-icon"]'
         ) as HTMLLinkElement;
-        if (appleLink) {
-          appleLink.href = faviconPath;
-        } else {
-          // Create apple touch icon if it doesn't exist
-          const link = document.createElement("link");
-          link.rel = "apple-touch-icon";
-          link.href = faviconPath;
-          document.head.appendChild(link);
+        if (!appleLink) {
+          appleLink = document.createElement("link");
+          appleLink.rel = "apple-touch-icon";
+          document.head.appendChild(appleLink);
         }
-
-        console.log("Favicon updated to:", faviconPath); // Debug log
+        appleLink.href = faviconPath;
       };
 
       // Set initial favicon
       updateFavicon();
 
-      // Listen for theme changes
+      // Listen for theme changes with modern approach
       const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-      mediaQuery.addEventListener("change", updateFavicon);
+      const handleChange = () => updateFavicon();
+      mediaQuery.addEventListener("change", handleChange);
 
       // Cleanup
       return () => {
-        mediaQuery.removeEventListener("change", updateFavicon);
+        mediaQuery.removeEventListener("change", handleChange);
       };
     };
 
     const cleanup = initFavicon();
     return cleanup;
+  }, [faviconPaths]);
+
+  // Preload critical resources
+  useEffect(() => {
+    const preloadCriticalResources = () => {
+      // Preload hero images
+      const heroImage = new Image();
+      heroImage.src = "/griffin_dark.png";
+      
+      // Preload noise texture
+      const noiseImage = new Image();
+      noiseImage.src = "/noise.avif";
+    };
+
+    preloadCriticalResources();
   }, []);
 
   return (
     <ErrorBoundary>
       <div className="App">
+        <FloatingParticles />
         <ScrollProgress />
         <Background />
-        <Navigation />
+        <ModernNavbar />
 
         <main>
           <Hero />
@@ -113,6 +134,7 @@ const App: React.FC = () => {
         </main>
 
         <Footer />
+        <FloatingActionButton />
       </div>
     </ErrorBoundary>
   );

@@ -1,12 +1,22 @@
-import { FC, memo, useState, useEffect } from "react";
+import { FC, memo, useState, useEffect, useCallback } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/About.scss";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import LoadingSkeleton from "../components/LoadingSkeleton";
 
 const About: FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const handleDownloadCV = useCallback(() => {
+    const link = document.createElement('a');
+    link.href = '/Jack_Griffin_CV.pdf';
+    link.download = 'Jack_Griffin_CV.pdf';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, []);
 
   useEffect(() => {
     // Simulate content loading
@@ -68,6 +78,16 @@ const About: FC = () => {
               AI, deep learning, and predictive modelling, I strive to build
               intelligent systems that drive innovation and efficiency.
             </p>
+            <div className="about-cta mt-4">
+              <Button 
+                variant="primary" 
+                onClick={handleDownloadCV}
+                aria-label="Download Jack Griffin's CV"
+                className="download-cv-btn"
+              >
+                Download CV
+              </Button>
+            </div>
           </Col>
         </Row>
       </Container>

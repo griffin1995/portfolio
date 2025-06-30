@@ -12,6 +12,7 @@ export interface Project {
 export interface ProjectButton {
   label: string;
   link: string;
+  download?: boolean;
 }
 
 export interface ImageSizes {
@@ -36,6 +37,7 @@ export interface LoadingSkeletonProps {
 export interface ErrorBoundaryState {
   hasError: boolean;
   error?: Error;
+  retryCount: number;
 }
 
 export interface ScrollProgressProps {
